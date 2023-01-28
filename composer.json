@@ -1,13 +1,23 @@
 {
+    "autoload": {
+        "psr-4": {
+            "Ogo\\": "src"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "Test\\": "test"
         }
     },
     "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
         "phpunit/phpunit": "^9.5"
     },
     "scripts": {
-        "phpunit": "phpunit"
+        "test": ["@phpunit", "@phpcs"],
+        "phpunit": "phpunit",
+        "phpcs": ["@phpcs.src", "@phpcs.test"],
+        "phpcs.src": "phpcs src --standard=phpcs.src.xml",
+        "phpcs.test": "phpcs test --standard=phpcs.test.xml"
     }
 }
